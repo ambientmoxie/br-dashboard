@@ -130,7 +130,7 @@ The banners are stored in a structured `production` directory, and the tool pars
 
 - This platform is not bug-free or even secure. It is a personal tool designed to simplify the management and review of HTML5 banners during the development process.
 - The tool is provided "as is" and is not intended for resale. You are welcome to adapt it for your specific needs if you plan to use it professionally.
-- More information about the asset bundling process and development setup will be added in future documentation updates.
+- More information about the asset bundling can be found here: https://github.com/ambientmoxie/starterkit-php-node.
 
 ### Todo
 
