@@ -134,6 +134,5 @@ The banners are stored in a structured `production` directory, and the tool pars
 
 ### Todo
 
-- Add update capabilities to the platform via the admin panel. Currently, the platform requires manual updates to the `production` directory structure, which is not ideal for a production studio or similar users.
+- Add update capabilities to the platform via the admin panel. Currently, the platform requires manual updates to the `production` directory structure, which is not ideal for non-dev users.
 - Improve the platform's usability and robustness to make it less prone to errors caused by misconfigured folder structures.
-- Add proper licensing information and guidelines for professional use.
