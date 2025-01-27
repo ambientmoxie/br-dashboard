@@ -1,0 +1,107 @@
+@use "placeholders" as *;
+
+:root {
+    /* Shades of gray */
+    --colors-gray0: #fff;
+    --colors-gray1: #f7f7f7;
+    --colors-gray2: #ededed;
+    --colors-gray3: #dedede;
+    --colors-gray4: #999;
+    --colors-gray5: #696969;
+    --colors-gray6: #333;
+    --colors-gray7: #000;
+
+    /* Spacing */
+    --spacing-xl: 6rem;
+    --spacing-lg: 3rem;
+    --spacing-md: 2rem;
+    --spacing-rg: 1rem;
+    --spacing-sm: 0.5rem;
+
+    /* Typography */
+    --font-size-lg: 1.8rem;
+    --font-size-md: 1.6rem;
+    --font-size-rg: 1.2rem;
+    --font-family-primary: Arial, Helvetica, sans-serif;
+
+    --letter-spacing-rg: 0.05rem;
+
+    /* Base colors */
+
+    --primary-color: var(
+        --colors-gray0
+    ); // Background color. Most visible color
+    --secondary-color: var(--colors-gray7); //Text color
+    --tertiary-color: var(--color-accent0); // Hightlight
+}
+
+.dark-theme {
+    --primary-color: #0d0d0d; // Background color. Most visible color
+    --secondary-color: var(--colors-gray2); //Text color
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+    @extend %hide-scrollbar;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background-color: var(--primary-color);
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-rg);
+    color: var(--secondary-color);
+    font-weight: 500;
+    letter-spacing: -0.2px;
+}
+
+button {
+    @extend %reset-button;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+button#logout {
+    text-transform: uppercase;
+    font-weight: 700;
+    position: fixed;
+    bottom: var(--spacing-md);
+    right: var(--spacing-md);
+    z-index: 10000;
+}
+
+ul {
+    list-style-type: none;
+}
+
+main {
+    width: 100%;
+    padding: var(--spacing-md);
+}
+
+img,
+svg,
+iframe {
+    display: block;
+}
+
+header {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: var(--font-size-lg);
+}
+
+a {
+    color: var(--colors-gray7);
+    text-decoration: none;
+}

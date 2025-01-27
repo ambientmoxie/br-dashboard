@@ -1,0 +1,125 @@
+/**
+ * This class manages two main elements of the dashboard: the board displaying all iframes and banners,
+ * and the "served-sizes" component, which allows users to select which banner ratios to display on the board.
+ * The logic relies solely on CSS to show or hide the selected ratios (no api calls). Users can choose between
+ * reviewing banners one at a time ("single-view") or multiple banners simultaneously ("multi-view").
+ */
+
+class ModeManager {
+    constructor(
+        viewModeSwitch,
+        bannerSizeList,
+        bannerPreviewBoard,
+        config = {}
+    ) {
+        this.viewModeSwitch = viewModeSwitch;
+        this.modeOptions = viewModeSwitch.querySelectorAll("li");
+        this.buttons = bannerSizeList.querySelectorAll("li button");
+        this.banners = bannerPreviewBoard.querySelectorAll(".banner");
+
+        // Defining default mode
+        this.isMultiMode =
+            config.isMultiMode === undefined ? true : config.isMultiMode;
+
+        this.init();
+    }
+
+    init() {
+        this.updateUI();
+    
+        this.modeOptions.forEach((modeButton) => {
+            modeButton.addEventListener("click", (e) => {
+                this.selectMode(e);
+                this.updateUI();
+            });
+        });
+
+        this.buttons.forEach((button) => {
+            button.addEventListener("click", this.handleButtonClick.bind(this));
+        });
+    }
+
+    handleButtonClick(e) {
+        this.toggleButtonSelection(e);
+        this.updateBoard();
+    }
+
+    updateUI() {
+        this.syncButtonStates();
+        this.updateBoard();
+    }
+
+    selectMode(e) {
+        this.modeOptions.forEach((modeButton) => {
+            modeButton.classList.remove("--selected");
+        });
+
+        this.isMultiMode = e.currentTarget.id === "multi";
+        e.currentTarget.classList.add("--selected");
+    }
+
+    syncButtonStates() {
+        // Sync mode selector state
+        this.modeOptions.forEach((modeOption) => {
+            modeOption.classList.toggle(
+                "--selected",
+                (this.isMultiMode && modeOption.id === "multi") ||
+                    (!this.isMultiMode && modeOption.id === "single")
+            );
+        });
+
+        // Sync radio button states
+        this.buttons.forEach((button, i) => {
+            const isFirstButton = i === 0;
+            this.isMultiMode
+                ? button.classList.add("--selected")
+                : button.classList.toggle("--selected", isFirstButton);
+        });
+    }
+
+    toggleButtonSelection(e) {
+        if (this.isMultiMode) {
+            e.currentTarget.classList.toggle("--selected");
+        } else {
+            this.buttons.forEach((button) => {
+                button.classList.remove("--selected");
+            });
+            e.currentTarget.classList.add("--selected");
+        }
+    }
+
+    getSizes() {
+        return Array.from(this.buttons)
+            .filter((button) => button.classList.contains("--selected"))
+            .map((button) => ({
+                width: button.dataset.width,
+                height: button.dataset.height,
+            }));
+    }
+
+    updateBoard() {
+        const servedSizes = this.getSizes(this.buttons);
+        this.banners.forEach((banner) => {
+            const iframe = banner.querySelector("iframe");
+            const iframeWidth = iframe.width;
+            const iframeHeight = iframe.height;
+            const isMatch = servedSizes.some(
+                (size) =>
+                    size.width === iframeWidth && size.height === iframeHeight
+            );
+            banner.style.display = isMatch ? "block" : "none";
+        });
+    }
+}
+
+function initModeManager() {
+    const viewModeSwitch = document.querySelector("#view-mode-switch");
+    const bannerSizeList = document.querySelector("#banner-size-list");
+    const bannerPreviewBoard = document.querySelector("#banner-preview-board");
+
+    new ModeManager(viewModeSwitch, bannerSizeList, bannerPreviewBoard, {
+        isMultiMode: true,
+    });
+}
+
+export { initModeManager, ModeManager };

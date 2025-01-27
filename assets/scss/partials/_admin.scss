@@ -1,0 +1,34 @@
+body#admin main {
+    display: flex;
+    > * {
+        flex: 1;
+    }
+}
+
+div#admin-aside {
+    header {
+        margin-bottom: var(--spacing-lg);
+    }
+    div#notice {
+        max-width: 35rem;
+    }
+}
+
+ul#dashboard-list {
+    max-width: 60rem;
+    height: fit-content;
+    border-bottom: 1px solid var(--colors-gray7);
+    ul.campaign-datas {
+        display: flex;
+        border-top: 1px solid var(--colors-gray7);
+        padding: var(--spacing-sm) 0;
+
+        &:hover {
+            background-color: var(--colors-gray1);
+        }
+        > * {
+            flex: 1;
+            font-weight: 700;
+        }
+    }
+}

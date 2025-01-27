@@ -1,0 +1,66 @@
+@use "placeholders" as *;
+
+body#login main {
+    
+    max-width: 70rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+form {
+    display: grid;
+    gap: var(--spacing-rg);
+    label {
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    input {
+        @extend %reset-input;
+        width: 50%;
+        padding-bottom: var(--spacing-sm);
+        border-bottom: 1px solid var(--colors-gray7);
+        &::placeholder {
+            color: var(--colors-gray7);
+        }
+    }
+
+    button#submit {
+        text-transform: capitalize;
+    }
+}
+
+div#studio-info {
+    display: grid;
+    gap: var(--spacing-rg);
+
+    div#current-time {
+        font-size: var(--font-size-md);
+        font-weight: 700;
+    }
+}
+
+footer {
+    display: flex;
+    align-items: flex-end;
+    > * {
+        flex: 1;
+    }
+
+    ul.pm-info {
+        li.pm-name {
+            text-transform: capitalize;
+        }
+        li.pm-title::first-letter {
+            text-transform: uppercase;
+        }
+    } 
+
+    div#pm-contact {
+        display: grid;
+        gap: var(--spacing-rg);
+    }
+}
