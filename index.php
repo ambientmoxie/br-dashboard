@@ -94,6 +94,7 @@ define('DEFAULT_SRC_FILE', PRODUCTION_DATA[$defaultVar][$defaultVer][$defaultLan
                     <div class="side-component__label"> informations </div>
                     <ul class="side-component__options">
                         <li class="option" id="brand-name"><?php echo $rootFolder ?></li>
+                        <li class="option" id="counter-variation"><?php echo infoText($countVariations, "variation") ?></li>
                         <li class="option" id="counter-version"><?php echo infoText($countVersions, "version") ?></li>
                         <li class="option" id="counter-language"><?php echo infoText($countLanguages, "language") ?></li>
                         <li class="option" id="counter-ratio"><?php echo infoText($countServedSizes, "ratio") ?></li>
