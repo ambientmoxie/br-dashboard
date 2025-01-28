@@ -68,7 +68,7 @@ body {
 button {
     @extend %reset-button;
     cursor: pointer;
-    font-weight: 700;
+    // font-weight: 700;
 }
 
 button#logout {
@@ -96,9 +96,18 @@ iframe {
 }
 
 header {
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: var(--font-size-lg);
+    display: grid;
+    gap: var(--spacing-rg);
+    span {
+        display: block;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: var(--font-size-lg);
+    }
+
+    p {
+        max-width: 35rem;
+    }
 }
 
 a {

@@ -1,0 +1,151 @@
+@use "placeholders" as *;
+
+body#admin,
+body#dashboard {
+    main {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        // gap: var(--spacing-md);
+        > * {
+            flex: 1;
+        }
+    }
+}
+
+body#dashboard main {
+    padding: 0;
+}
+
+#sidebar {
+    max-width: 30rem;
+    height: 100svh;
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+    overflow-y: auto;
+    @extend %hide-scrollbar;
+
+    header {
+        margin-bottom: var(--spacing-lg);
+        padding: var(--spacing-md) var(--spacing-md) var(--spacing-rg);
+        position: sticky;
+        top: 0px;
+        background: var(--colors-gray0);
+    }
+
+    button {
+        @extend %reset-button;
+        cursor: pointer;
+        width: 100%;
+        text-align: left;
+    }
+}
+
+#side-components {
+    padding-bottom: var(--spacing-rg);
+    .side-component {
+        padding: var(--spacing-rg) var(--spacing-md);
+        display: flex;
+        gap: var(--spacing-rg);
+        > * {
+            flex: 1;
+        }
+
+        div.side-component__label {
+            font-weight: 700;
+        }
+
+        ul.side-component__options li {
+            padding: 1px 0;
+            pointer-events: all;
+
+            &.--selected {
+                font-weight: 700;
+                pointer-events: none;
+            }
+
+            &:hover {
+                font-weight: 700;
+            }
+        }
+    }
+}
+
+li#brand-name {
+    font-weight: 700;
+}
+
+div#served-size div:last-of-type{
+    display: grid;
+    gap: var(--spacing-rg);
+}
+
+li.banner-size-item {
+    button.banner-size-button {
+        display: flex;
+        align-items: center;
+        gap: var(--space-rg);
+
+        &.--selected {
+            color: var(--secondary-color);
+            span.box {
+                border: 1px solid var(--secondary-color);
+                &::before {
+                    content: url("../icons/checker.svg");
+                    display: block;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -55%);
+                }
+            }
+        }
+
+        span.box {
+            width: 1.4rem;
+            height: 1.4rem;
+            aspect-ratio: 1/1;
+            border: 1px solid var(--secondary-color);
+            cursor: pointer;
+            margin-right: var(--spacing-rg);
+            position: relative;
+        }
+    }
+}
+
+#banner-preview-board {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    z-index: 0;
+    padding: var(--spacing-md);
+    @extend %hide-scrollbar;
+
+    .banner .banner__footer {
+        padding: var(--spacing-rg) 0;
+    }
+
+    .banner__wrapper {
+        position: relative;
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--colors-gray7);
+            z-index: 1;
+        }
+
+        iframe {
+            position: relative;
+            z-index: 10;
+        }
+    }
+}
+
+#information ul li {
+    pointer-events: none !important;
+}

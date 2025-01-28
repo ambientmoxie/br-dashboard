@@ -8,3 +8,7 @@
 @use "partials/login" as *;
 @use "partials/admin" as *;
 @use "partials/dashboard" as *;
+
+// Components
+@use "partials/select" as *;
+

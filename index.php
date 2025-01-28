@@ -75,68 +75,69 @@ define('DEFAULT_SRC_FILE', PRODUCTION_DATA[$defaultVar][$defaultVer][$defaultLan
 <body id="dashboard">
     <main>
         <div id="sidebar">
-            <header>dashboard</header>
-            <div id="side-components">
-                <?php
-                $countVariations  = count(PRODUCTION_DATA);
-                $countVersions    = count(PRODUCTION_DATA[$defaultVar]);
-                $countLanguages   = count(PRODUCTION_DATA[$defaultVar][$defaultVer]);
-                $countServedSizes = count(PRODUCTION_DATA[$defaultVar][$defaultVer][$defaultLan]["served-sizes"]);
+            <header>
+                <span>dashboard</span>
+                <p>Track the banner production progress by selecting a campaign, version, and language below. To review banners in detail, choose a format from the list at the bottom.</p>
+            </header>
 
-                function infoText($count, $label)
-                {
-                    $text = intval($count) <= 1 ? $label : $label . "s";
-                    return $count . " " . $text;
-                }
-                ?>
+            <div id="selectors">
 
-                <div class="side-component" id="information">
-                    <div class="side-component__label"> informations </div>
-                    <ul class="side-component__options">
-                        <li class="option" id="brand-name"><?php echo $rootFolder ?></li>
-                        <li class="option" id="counter-variation"><?php echo infoText($countVariations, "variation") ?></li>
-                        <li class="option" id="counter-version"><?php echo infoText($countVersions, "version") ?></li>
-                        <li class="option" id="counter-language"><?php echo infoText($countLanguages, "language") ?></li>
-                        <li class="option" id="counter-ratio"><?php echo infoText($countServedSizes, "ratio") ?></li>
-                    </ul>
-                </div>
-
-                <div class="side-component" id="variation">
-                    <div class="side-component__label"> variation </div>
-                    <ul class="side-component__options selectable" data-type="variation">
-                        <?php echo ElementBuilder::createOptions(PRODUCTION_DATA, $defaultVar); ?>
-                    </ul>
-                </div>
-
-                <div class="side-component" id="version">
-                    <div class="side-component__label"> version </div>
-                    <ul class="side-component__options selectable" data-type="version">
-                        <?php echo ElementBuilder::createOptions(PRODUCTION_DATA[$defaultVar], $defaultVer); ?>
-                    </ul>
-                </div>
-
-                <div class="side-component" id="language">
-                    <div class="side-component__label"> language </div>
-                    <ul class="side-component__options selectable" data-type="language">
-                        <?php echo ElementBuilder::createOptions(PRODUCTION_DATA[$defaultVar][$defaultVer], $defaultLan); ?>
-                    </ul>
-                </div>
-
-                <div class="side-component" id="served-size">
-                    <div class="side-component__label"> served-sizes </div>
-                    <div>
-                        <ul class="side-component__options" id="view-mode-switch">
-                            <li class="option" id="multi"><button>multi-view</button></li>
-                            <li class="option" id="single"><button>single-view</button></li>
-                        </ul>
-                        <ul class="side-component__options" id="banner-size-list">
-                            <?php
-                            $servedSizes = DEFAULT_SRC_FILE["served-sizes"];
-                            echo ElementBuilder::createRadioButtons($servedSizes);
-                            ?>
-                        </ul>
-                        <button id="clear-button">clear all</button>
+                <div class="selector-wrapper">
+                    <div class="selector-label">
+                        Select a campaign:
                     </div>
+                    <select id="variation-select" data-type="variation" class="custom-select">
+                        <?php
+                        $variations =  PRODUCTION_DATA;
+                        echo ElementBuilder::createOptions(PRODUCTION_DATA, $defaultVar);
+                        ?>
+                    </select>
+                </div>
+
+                <div class="selector-wrapper">
+                    <div class="selector-label">
+                        Select a version:
+                    </div>
+                    <select id="variation-select" data-type="version" class="custom-select">
+                        <?php
+                        $variations =  PRODUCTION_DATA;
+                        echo ElementBuilder::createOptions(PRODUCTION_DATA[$defaultVar], $defaultVer);
+                        ?>
+                    </select>
+                </div>
+
+                <div class="selector-wrapper">
+                    <div class="selector-label">
+                        Select a language:
+                    </div>
+                    <select id="variation-select" data-type="language" class="custom-select">
+                        <?php
+                        $variations =  PRODUCTION_DATA;
+                        echo ElementBuilder::createOptions(PRODUCTION_DATA[$defaultVar][$defaultVer], $defaultLan);
+                        ?>
+                    </select>
+                </div>
+
+
+            </div>
+
+            <div id="banner-filter" id="served-size">
+                <div id="banner-filter__label"> Select banners to review: </div>
+                <div>
+                    <ul class="banner-filter__options" id="view-mode-switch">
+                        <li class="option" id="multi"><button>multi-view</button></li>
+                        <li class="option" id="single"><button>single-view</button></li>
+                    </ul>
+
+                    <p id="view-mode-notice">Allows you to see all the banner ratios at once and selectively enable/disable ratios.</p>
+
+                    <ul class="banner-filter__options" id="banner-size-list">
+                        <?php
+                        $servedSizes = DEFAULT_SRC_FILE["served-sizes"];
+                        echo ElementBuilder::createRadioButtons($servedSizes);
+                        ?>
+                    </ul>
+                    <button id="clear-button">clear all</button>
                 </div>
             </div>
         </div>

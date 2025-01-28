@@ -2,7 +2,6 @@
 
 class ElementBuilder
 {
-
     // Generates options to select
     public static function createOptions(array $root, string $defaultKey): string
     {
@@ -12,8 +11,8 @@ class ElementBuilder
 
         foreach (array_keys($folders) as $key) {
             $label = str_replace('-', ' ', $key);
-            $selected = strval($key) === $defaultKey ? '--selected' : '';
-            $options .= "<li class=\"option {$selected}\"><button data-index=\"{$counter}\" data-key=\"{$key}\">{$label}</button></li>";
+            $selected = strval($key) === $defaultKey ? 'selected' : '';
+            $options .= "<option data-key=\"{$key}\" {$selected}>{$label}</option>";
             $counter++;
         }
 
@@ -36,7 +35,7 @@ class ElementBuilder
                 </li>
             ";
         }
-    
+
         return $radioButtons;
     }
 

@@ -13,7 +13,10 @@ class ModeManager {
         clearButton,
         config = {}
     ) {
+        // Header elements
         this.viewModeSwitch = viewModeSwitch;
+        this.notice = viewModeSwitch.nextElementSibling;
+
         this.modeOptions = viewModeSwitch.querySelectorAll("li");
         this.buttons = bannerSizeList.querySelectorAll("li button");
         this.banners = bannerPreviewBoard.querySelectorAll(".banner");
@@ -37,7 +40,10 @@ class ModeManager {
         });
 
         // Clear the board
-        this.clearButton.addEventListener("click", this.clearSelection.bind(this));
+        this.clearButton.addEventListener(
+            "click",
+            this.clearSelection.bind(this)
+        );
 
         this.buttons.forEach((button) => {
             button.addEventListener("click", this.handleButtonClick.bind(this));
@@ -50,8 +56,15 @@ class ModeManager {
     }
 
     updateUI() {
+        this.updateText();
         this.syncButtonStates();
         this.updateBoard();
+    }
+
+    updateText() {
+        this.notice.innerText = this.isMultiMode
+            ? "Allows you to see all the banner ratios at once and selectively enable/disable ratios."
+            : "Lets you focus on one banner ratio at a time, automatically disabling all others.";
     }
 
     selectMode(e) {
@@ -63,10 +76,16 @@ class ModeManager {
         e.currentTarget.classList.add("--selected");
     }
 
-    clearSelection() {
-        this.buttons.forEach((button) => {
-            button.classList.remove("--selected");
-        });
+    clearSelection(e) {
+
+        const isCleared = e.target.classList.contains("--cleared");
+        e.target.classList.toggle("--cleared");
+        const action = isCleared ? "add" : "remove";
+        const buttonText = isCleared ? "clear all" : "display all";
+
+        this.buttons.forEach((button) => button.classList[action]("--selected"));
+        e.target.innerText = buttonText;
+
         this.updateBoard();
     }
 

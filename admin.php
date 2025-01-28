@@ -29,10 +29,11 @@ require_once __DIR__ . '/assets/php/helpers.php';
 
     <main>
         <div id="admin-aside">
-            <header>admin</header>
-            <div id="notice">
-                Links to each brand's dashboard are provided beside. All campaigns are password-protected, but you can access them directly from here without a password. Note: The last item on each line is the client's password, intentionally kept simple for convenient sharing.
-            </div>
+            <header>
+                <span>admin</span>
+                <p>Links to each brand's dashboard are provided beside. All campaigns are password-protected, but you can access them directly from here without a password. Note: The last item on each line is the client's password, intentionally kept simple for convenient sharing.</p>
+            </header>
+
         </div>
 
         <ul id="dashboard-list">

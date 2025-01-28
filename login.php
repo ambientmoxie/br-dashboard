@@ -11,7 +11,7 @@ if (isset($_SESSION['rootFolder'])) {
 } else if (isset($_SESSION['isAdmin'])) {
     header("Location: /admin.php");
     exit;
-} 
+}
 
 // Check for error parameter after password submission.
 $error = isset($_GET['error']) && $_GET['error'] === 'invalid' ? true : false;
@@ -32,7 +32,9 @@ $error = isset($_GET['error']) && $_GET['error'] === 'invalid' ? true : false;
 <body id="login">
 
     <main>
-        <header>login</header>
+        <header>
+            <span>login</span>
+        </header>
 
         <form action="/api/check-password.php" method="POST">
             <label for="password">enter your password to proceed</label>
