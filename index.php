@@ -135,6 +135,7 @@ define('DEFAULT_SRC_FILE', PRODUCTION_DATA[$defaultVar][$defaultVer][$defaultLan
                             echo ElementBuilder::createRadioButtons($servedSizes);
                             ?>
                         </ul>
+                        <button id="clear-button">clear all</button>
                     </div>
                 </div>
             </div>

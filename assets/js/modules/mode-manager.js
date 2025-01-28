@@ -10,12 +10,14 @@ class ModeManager {
         viewModeSwitch,
         bannerSizeList,
         bannerPreviewBoard,
+        clearButton,
         config = {}
     ) {
         this.viewModeSwitch = viewModeSwitch;
         this.modeOptions = viewModeSwitch.querySelectorAll("li");
         this.buttons = bannerSizeList.querySelectorAll("li button");
         this.banners = bannerPreviewBoard.querySelectorAll(".banner");
+        this.clearButton = clearButton;
 
         // Defining default mode
         this.isMultiMode =
@@ -26,13 +28,16 @@ class ModeManager {
 
     init() {
         this.updateUI();
-    
+
         this.modeOptions.forEach((modeButton) => {
             modeButton.addEventListener("click", (e) => {
                 this.selectMode(e);
                 this.updateUI();
             });
         });
+
+        // Clear the board
+        this.clearButton.addEventListener("click", this.clearSelection.bind(this));
 
         this.buttons.forEach((button) => {
             button.addEventListener("click", this.handleButtonClick.bind(this));
@@ -56,6 +61,13 @@ class ModeManager {
 
         this.isMultiMode = e.currentTarget.id === "multi";
         e.currentTarget.classList.add("--selected");
+    }
+
+    clearSelection() {
+        this.buttons.forEach((button) => {
+            button.classList.remove("--selected");
+        });
+        this.updateBoard();
     }
 
     syncButtonStates() {
@@ -116,10 +128,17 @@ function initModeManager() {
     const viewModeSwitch = document.querySelector("#view-mode-switch");
     const bannerSizeList = document.querySelector("#banner-size-list");
     const bannerPreviewBoard = document.querySelector("#banner-preview-board");
+    const clearButton = document.querySelector("#clear-button");
 
-    new ModeManager(viewModeSwitch, bannerSizeList, bannerPreviewBoard, {
-        isMultiMode: true,
-    });
+    new ModeManager(
+        viewModeSwitch,
+        bannerSizeList,
+        bannerPreviewBoard,
+        clearButton,
+        {
+            isMultiMode: true,
+        }
+    );
 }
 
 export { initModeManager, ModeManager };

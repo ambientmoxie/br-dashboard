@@ -19,7 +19,6 @@ body#dashboard main {
 
 #sidebar {
     max-width: 30rem;
-    // height: calc(100svh - var(--spacing-md));
     height: 100svh;
     position: sticky;
     top: 0;
@@ -77,13 +76,12 @@ li#brand-name {
     font-weight: 700;
 }
 
-ul#view-mode-switch {
-    margin-bottom: var(--spacing-rg);
+div#served-size div:last-of-type{
+    display: grid;
+    gap: var(--spacing-rg);
 }
 
 li.banner-size-item {
-    padding: var(--space-xxs) 0;
-
     button.banner-size-button {
         display: flex;
         align-items: center;
