@@ -40,7 +40,7 @@ $error = isset($_GET['error']) && $_GET['error'] === 'invalid' ? true : false;
             <label for="password">Enter your password to proceed:</label>
             <input type="password" name="password" id="password" placeholder="Password*" required>
             <div id="form-footer">
-                <a id="forget-password-link" href="">Forgot your password ?</a>
+                <a id="forget-password-link" href="mailto:aurelie.morin@tastee.studio">Forgot your password ?</a>
                 <button type="submit" id="submit" class="btn-common">Submit</button>
             </div>
         </form>

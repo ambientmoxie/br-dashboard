@@ -1,5 +1,10 @@
 @use "utilities" as *;
 
+body#dashboard {
+    opacity: 0;
+    overflow: hidden;
+}
+
 body#dashboard main {
     display: flex;
     width: 100%;
@@ -21,7 +26,7 @@ div#sidebar {
     max-width: 28rem;
     position: sticky;
     overflow-y: auto;
-    gap: var(--space-06);
+    gap: var(--space-05);
     padding: var(--space-03);
     flex-direction: column;
 }
@@ -30,7 +35,7 @@ div#sidebar {
     div:last-of-type {
         display: grid;
         gap: var(--space-02);
-        padding: var(--space-01) 0;
+        padding: var(--space-02) 0;
     }
 }
 

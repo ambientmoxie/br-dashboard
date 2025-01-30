@@ -58,8 +58,9 @@ require_once __DIR__ . '/assets/php/helpers.php';
                 $campaignCount = infoText(count($accountFolder), "campaign");
 
 
-                echo  "<a href=\"/index.php?rootFolder={$value}\" target=\"_blank\">
-                            <li class=\"campaign\">
+                echo  "
+                        <li class=\"campaign\">
+                            <a href=\"/index.php?rootFolder={$value}\" target=\"_blank\">
                                 <div class=\"campaign-header\">
                                     <p class=\"item-header__index\">$campaignIndex</p>
                                     <p class=\"item-header__account\">{$value}</p>
@@ -68,17 +69,16 @@ require_once __DIR__ . '/assets/php/helpers.php';
                                     <p class=\"item-body__campaign-count\"> <span class=\"count\">{$campaignCount}</span> have been produced for this account.</p>
                                     <p class=\"item-body__campaign-password\">Password: <span>{$key}</span></p>
                                 </div>
-                            </li>
-                        </a>";
+                            </a>
+                        </li>
+                        ";
                 $i++;
             }
             ?>
 
         </ul>
-
-
     </main>
-    <button id="btn-logout">logout</button>
+    <button id="btn-logout">log out</button>
 </body>
 
 </html>

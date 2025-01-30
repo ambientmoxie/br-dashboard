@@ -4,12 +4,10 @@ import initCustomSelect from "./modules/customSelect";
 import clearSession from "./modules/logout";
 
 document.addEventListener("DOMContentLoaded", () => {
-    const isDashboardPage = document.body.id === "dashboard";
-    const isAdminPage = document.body.id === "admin";
-    const isLoginPage = document.body.id === "login";
 
     // Initialize project navigation in dashboard.
-    if (isDashboardPage) { 
+    const isDashboardPage = document.body.id === "dashboard";
+    if (isDashboardPage) {
         initModeManager();
         initCustomSelect();
     }
@@ -21,11 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Dynamic year and hour
-    if (isLoginPage) {
-        const currentYear = document.querySelector("#current-year");
-        currentYear.innerText = new Date().getFullYear();
-        const currentTime = document.querySelector("#current-time");
-        if (currentTime) animateCurrentTime(currentTime);
+    // Display dashboard body, after all js transformation have been applied
+    const dashboardBody = document.querySelector("body#dashboard");
+    if (dashboardBody) {
+        requestAnimationFrame(() => {
+            dashboardBody.style.overflow = "auto";
+            dashboardBody.style.opacity = "1";
+        });
     }
 });

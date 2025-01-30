@@ -19,8 +19,7 @@ $rootFolder = "";
 // Check if the root folder is set in the session. If not, check if any URL parameter is set.
 // If no URL parameter is set, we can't assign any value to $rootFolder, so the user is redirected to login.php.
 if (!isset($_SESSION['rootFolder'])) {
-    if (isset($_GET['rootFolder'])) {
-        // Replace potential spaces by "-" before assigning it
+    if (isset($_GET['rootFolder']) && isset($_SESSION['isAdmin'])) {
         $rootFolder =  $_GET['rootFolder'];
     } elseif (isset($_SESSION['isAdmin'])) {
         header("Location: /admin.php");
@@ -30,7 +29,6 @@ if (!isset($_SESSION['rootFolder'])) {
         exit;
     }
 } else {
-    // Replace potential spaces by "-" before assigning it
     $rootFolder = $_SESSION['rootFolder'];
 }
 
@@ -79,7 +77,7 @@ define('DEFAULT_SRC_FILE', PRODUCTION_DATA[$defaultVar][$defaultVer][$defaultLan
                 <header>
                     dashboard
                 </header>
-                <p>Track the banner production progress by selecting a campaign, version, and language below. To examine banners closely, select ratios from the list below.</p>
+                <p>Monitor the progress of banner production by choosing a campaign, version, and language. To take a closer look at the banners, select ratios from the list below.</p>
             </div>
 
             <div id="selectors">

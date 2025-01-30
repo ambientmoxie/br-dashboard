@@ -19,7 +19,7 @@ ul#campaigns-list {
     grid-template-columns: repeat(5, 1fr);
     gap: var(--space-02);
 
-    li.campaign {
+    li.campaign a {
         border: 1px solid var(--theme-text-color);
         height: 20rem;
         display: flex;
