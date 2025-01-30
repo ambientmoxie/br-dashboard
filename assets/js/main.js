@@ -1,8 +1,6 @@
 import "../scss/main.scss";
-import { initSelectables } from "./modules/selectable-handler";
 import { initModeManager } from "./modules/mode-manager";
 import initCustomSelect from "./modules/customSelect";
-import animateCurrentTime from "./modules/updateTime";
 import clearSession from "./modules/logout";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -16,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         initCustomSelect();
     }
 
-    const logoutButton = document.querySelector("#logout");
+    const logoutButton = document.querySelector("#btn-logout");
     if (logoutButton) {
         logoutButton.addEventListener("click", () => {
             clearSession("/login.php");

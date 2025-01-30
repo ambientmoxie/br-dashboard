@@ -75,10 +75,12 @@ define('DEFAULT_SRC_FILE', PRODUCTION_DATA[$defaultVar][$defaultVer][$defaultLan
 <body id="dashboard">
     <main>
         <div id="sidebar">
-            <header>
-                <span>dashboard</span>
-                <p>Track the banner production progress by selecting a campaign, version, and language below. To review banners in detail, choose a format from the list at the bottom.</p>
-            </header>
+            <div>
+                <header>
+                    dashboard
+                </header>
+                <p>Track the banner production progress by selecting a campaign, version, and language below. To examine banners closely, select ratios from the list below.</p>
+            </div>
 
             <div id="selectors">
 
@@ -125,9 +127,10 @@ define('DEFAULT_SRC_FILE', PRODUCTION_DATA[$defaultVar][$defaultVer][$defaultLan
                 <div id="banner-filter__label"> Select banners to review: </div>
                 <div>
                     <ul class="banner-filter__options" id="view-mode-switch">
-                        <li class="option" id="multi"><button>multi-view</button></li>
-                        <li class="option" id="single"><button>single-view</button></li>
+                        <li class="option" id="multi"><button class="btn-mode">multi-view</button></li>
+                        <li class="option" id="single"><button class="btn-mode">single-view</button></li>
                     </ul>
+                    
 
                     <p id="view-mode-notice">Allows you to see all the banner ratios at once and selectively enable/disable ratios.</p>
 
@@ -137,7 +140,7 @@ define('DEFAULT_SRC_FILE', PRODUCTION_DATA[$defaultVar][$defaultVer][$defaultLan
                         echo ElementBuilder::createRadioButtons($servedSizes);
                         ?>
                     </ul>
-                    <button id="clear-button">clear all</button>
+                    <button id="clear-button" class="btn-mode">clear all</button>
                 </div>
             </div>
         </div>
@@ -147,7 +150,7 @@ define('DEFAULT_SRC_FILE', PRODUCTION_DATA[$defaultVar][$defaultVer][$defaultLan
             echo ElementBuilder::createBanners($servedSizes, $defaultPathToFile);
             ?>
         </div>
-        <button id="logout">log out</button>
+        <button id="btn-logout">log out</button>
     </main>
 </body>
 

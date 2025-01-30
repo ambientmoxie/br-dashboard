@@ -1,4 +1,4 @@
-@use "placeholders" as *;
+@use "utilities" as *;
 
 :root {
     /* Shades of gray */
@@ -11,7 +11,22 @@
     --colors-gray6: #333;
     --colors-gray7: #000;
 
+    --color-blue-01: #eaecef;
+    --color-blue-02: #d4d9df;
+    --color-blue-03: #222529;
+
     /* Spacing */
+
+    --space-01: 0.5rem;
+    --space-02: 1rem;
+    --space-03: 1.5rem;
+    --space-04: 2rem;
+    --space-05: 3rem;
+    --space-06: 6rem;
+    --space-07: 10rem;
+    --space-08: 15rem;
+    --space-09: 20rem;
+
     --spacing-xl: 6rem;
     --spacing-lg: 3rem;
     --spacing-md: 2rem;
@@ -19,19 +34,23 @@
     --spacing-sm: 0.5rem;
 
     /* Typography */
-    --font-size-lg: 1.8rem;
+    --font-size-lg: 2rem;
     --font-size-md: 1.6rem;
     --font-size-rg: 1.2rem;
+    --font-size-sm: 1.1rem;
     --font-family-primary: Arial, Helvetica, sans-serif;
 
     --letter-spacing-rg: 0.05rem;
 
+    --theme-transition-duration: 0.15s;
+
+    --colors-alert: #E15100;
+
     /* Base colors */
 
-    --primary-color: var(
-        --colors-gray0
-    ); // Background color. Most visible color
-    --secondary-color: var(--colors-gray7); //Text color
+    --theme-background: var(--colors-gray0);
+    // --theme-text-color: var(--colors-gray7); //Text color
+    --theme-text-color: #35202e; //Text color
     --tertiary-color: var(--color-accent0); // Hightlight
 }
 
@@ -57,36 +76,16 @@ html {
 }
 
 body {
-    background-color: var(--primary-color);
+    background-color: var(--theme-background);
     font-family: var(--font-family-primary);
     font-size: var(--font-size-rg);
-    color: var(--secondary-color);
-    font-weight: 500;
+    color: var(--theme-text-color);
     letter-spacing: -0.2px;
-}
-
-button {
-    @extend %reset-button;
-    cursor: pointer;
-    // font-weight: 700;
-}
-
-button#logout {
-    text-transform: uppercase;
-    font-weight: 700;
-    position: fixed;
-    bottom: var(--spacing-md);
-    right: var(--spacing-md);
-    z-index: 10000;
+    font-weight: 500;
 }
 
 ul {
     list-style-type: none;
-}
-
-main {
-    width: 100%;
-    padding: var(--spacing-md);
 }
 
 img,
@@ -95,22 +94,73 @@ iframe {
     display: block;
 }
 
+// Header
+
 header {
+    font-size: var(--font-size-lg);
+    color: var(--theme-text-color);
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+header#header-login,
+header#header-admin {
+    @include style-header-page();
+}
+
+// Buttons
+
+button {
+    @extend %reset-button;
+    cursor: pointer;
+    text-transform: capitalize
+}
+
+button#btn-logout {
+    @include style-button();
+    position: fixed;
+    bottom: var(--space-03);
+    right: var(--space-03);
+    color: var(--theme-text-color);
+    font-size: var(--font-size-sm);
+    border: 1px solid (var(--theme-text-color));
+    text-transform: uppercase;
+    background-color: var(--theme-background);
+    @include hover-animation();
+}
+
+button.btn-common {
+    @include style-button();
+    background-color: var(--color-blue-01);
+    transition: background-color var(--theme-transition-duration) ease;
+    &:hover {
+        background-color: var(--color-blue-02);
+    }
+}
+
+// Form
+
+form {
+    width: 100%;
+    max-width: 40rem;
     display: grid;
-    gap: var(--spacing-rg);
-    span {
+    gap: var(--space-02);
+
+    label {
         display: block;
-        text-transform: uppercase;
-        font-weight: 700;
-        font-size: var(--font-size-lg);
     }
 
-    p {
-        max-width: 35rem;
+    input {
+        width: 100%;
+        @extend %reset-input;
+        @include style-button();
+        border: 1px solid var(--color-blue-02);
+        &::placeholder {
+            color: var(--theme-text-color);
+        }
     }
 }
 
 a {
-    color: var(--colors-gray7);
-    text-decoration: none;
+    @extend %reset-links;
 }

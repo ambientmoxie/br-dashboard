@@ -1,5 +1,4 @@
 import { initModeManager } from "./mode-manager";
-import { initSelectables } from "./selectable-handler";
 
 /**
  * After each user click, the code below loops through all dropdown elements and retrieves the selected options.
@@ -32,7 +31,6 @@ class UIManager {
         // The array follows this specific order: "variation," "version," "language."
         // This order is crucial as it reflects the structure of the production object.
         const keys = this.generatePathKeys();
-        console.log(keys);
         // The keys are passed through each function to form a valid path,
         // enabling them to access the necessary data to rebuild the component.
         // this.updateBasicInfo(keys);
@@ -47,7 +45,6 @@ class UIManager {
 
         // After the rebuild, the event listeners attached to each UI element are removed.
         // It is necessary to reinitialize the modes.
-        initSelectables();
         initModeManager();
     }
 
@@ -114,9 +111,7 @@ class UIManager {
             variationDropdown,
             versionDropdown,
             languageDropdown,
-        ];
-
-        console.log(sortedDropdown);
+        ];        
 
         // Sorting data "folders" in this particular order: variation, version, language.
         const variationFolder = this.productionData;
@@ -138,8 +133,8 @@ class UIManager {
         const fragment = document.createDocumentFragment();
         Object.keys(folder).forEach((item, index) => {
             const formatedItemText = item.replace("-", " ");
-            const option = document.createElement("div");
-            option.classList.add("custom-select__option");
+            const option = document.createElement("button");
+            option.classList.add("custom-select__option", "btn-common");
             option.setAttribute("data-index", index);
             option.setAttribute("data-key", item);
             option.innerHTML = formatedItemText;
@@ -147,7 +142,9 @@ class UIManager {
             if (item === selectedKey) {
                 option.classList.add("prevent-selection");
                 const header = dropdown.previousElementSibling;
+                const arrowBuffer = header.querySelector("span.header-arrow");
                 header.innerText = formatedItemText;
+                header.append(arrowBuffer);
             }
 
             fragment.append(option);

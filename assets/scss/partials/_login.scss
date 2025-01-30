@@ -1,66 +1,39 @@
-@use "placeholders" as *;
-
 body#login main {
-    
-    max-width: 70rem;
-    min-height: 100vh;
     display: flex;
-    flex-direction: column;
+    width: 100%;
+    height: 100svh;
+    align-items: center;
+    justify-content: center;
+}
+
+div#form-footer {
+    display: flex;
     justify-content: space-between;
-    
 }
 
-form {
-    display: grid;
-    gap: var(--spacing-rg);
-    label {
-        text-transform: uppercase;
-        font-weight: 700;
-    }
-
-    input {
-        @extend %reset-input;
-        width: 50%;
-        padding-bottom: var(--spacing-sm);
-        border-bottom: 1px solid var(--colors-gray7);
-        &::placeholder {
-            color: var(--colors-gray7);
-        }
-    }
-
-    button#submit {
-        text-transform: capitalize;
-    }
+a#forget-password-link{
+    font-weight: 700;
 }
 
-div#studio-info {
-    display: grid;
-    gap: var(--spacing-rg);
-
-    div#current-time {
-        font-size: var(--font-size-md);
-        font-weight: 700;
-    }
+p#alert-password{
+    padding: var(--space-04);
+    background-color: var(--color-blue-01);
+    position: absolute;
+    bottom: var(--space-03);
+    right: var(--space-03);
+    color: var(--colors-alert);
+    opacity: 0;
+    transform: translateX(20px);
+    animation: fadeIn 0.3s ease-out forwards;
 }
 
-footer {
-    display: flex;
-    align-items: flex-end;
-    > * {
-        flex: 1;
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
     }
-
-    ul.pm-info {
-        li.pm-name {
-            text-transform: capitalize;
-        }
-        li.pm-title::first-letter {
-            text-transform: uppercase;
-        }
-    } 
-
-    div#pm-contact {
-        display: grid;
-        gap: var(--spacing-rg);
+    to {
+      opacity: 1;
+      transform: translateX(0);
     }
-}
+  }

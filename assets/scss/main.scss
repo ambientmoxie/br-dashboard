@@ -4,11 +4,11 @@
 @use "partials/global" as *;
 @use "partials/scrollbar" as *;
 
-// Pages
+// // Pages
 @use "partials/login" as *;
 @use "partials/admin" as *;
 @use "partials/dashboard" as *;
 
-// Components
-@use "partials/select" as *;
+// // Components
+    @use "partials/select" as *;
 

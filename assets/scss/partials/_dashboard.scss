@@ -1,190 +1,116 @@
-@use "placeholders" as *;
+@use "utilities" as *;
 
-body#dashboard {
-    main {
-        display: flex;
-        width: 100%;
-        height: 100%;
-        padding: 0;
-        > * {
-            flex: 1;
-        }
+body#dashboard main {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    > * {
+        flex: 1;
     }
 }
 
-div#sidebar {
-    max-width: 28rem;
-    padding: var(--spacing-md);
-    border-right: 1px solid var(--colors-gray7);
-    display: grid;
-    gap: var(--spacing-lg);
-    height: 100svh;
-    position: sticky;
-    top: 0;
-    overflow-y: auto;
+body#dashboard header {
+    margin-bottom: var(--space-03);
 }
 
-// body#dashboard main {
-//     padding: 0;
-// }
-
-// #sidebar {
-//     max-width: 30rem;
-//     height: 100svh;
-//     position: sticky;
-//     top: 0;
-//     overflow: hidden;
-//     overflow-y: auto;
-//     @extend %hide-scrollbar;
-
-//     header {
-//         margin-bottom: var(--spacing-lg);
-//         padding: var(--spacing-md) var(--spacing-md) var(--spacing-rg);
-//         position: sticky;
-//         top: 0px;
-//         background: var(--colors-gray0);
-//     }
-
-//     button {
-//         @extend %reset-button;
-//         cursor: pointer;
-//         width: 100%;
-//         text-align: left;
-//     }
-// }
-
-// #side-components {
-//     padding-bottom: var(--spacing-rg);
-//     .side-component {
-//         padding: var(--spacing-rg) var(--spacing-md);
-//         display: flex;
-//         gap: var(--spacing-rg);
-//         > * {
-//             flex: 1;
-//         }
-
-//         div.side-component__label {
-//             font-weight: 700;
-//         }
-
-//         ul.side-component__options li {
-//             padding: 1px 0;
-//             pointer-events: all;
-
-//             &.--selected {
-//                 font-weight: 700;
-//                 pointer-events: none;
-//             }
-
-//             &:hover {
-//                 font-weight: 700;
-//             }
-//         }
-//     }
-// }
-
-// li#brand-name {
-//     font-weight: 700;
-// }
-
-// div#served-size div:last-of-type{
-//     display: grid;
-//     gap: var(--spacing-rg);
-// }
-
-// #banner-filter__label {
-//     padding-bottom: var(--spacing-sm);
-//     border-bottom: 1px solid var(--colors-gray7);
-// }
+div#sidebar {
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100svh;
+    max-width: 28rem;
+    position: sticky;
+    overflow-y: auto;
+    gap: var(--space-06);
+    padding: var(--space-03);
+    border-right: 1px solid var(--theme-text-color);
+}
 
 #banner-filter {
     div:last-of-type {
         display: grid;
         gap: var(--spacing-rg);
         padding: var(--spacing-sm) 0;
-
     }
 }
 
-
-ul li.--selected {
-    font-weight: 700;
-}
-
-ul li button.--selected {
-    font-weight: 700;
-}
-
-#view-mode-switch{
+#view-mode-switch {
     display: flex;
-    height: 3rem;
-    border: 1px solid var(--secondary-color);
-
-    li{
+    gap: var(--space-01);
+    li.option {
         flex: 1;
-        &.--selected {
-            background-color: var(--colors-gray2);
+        &.--selected button::before {
+            content: "";
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            background-color: var(--theme-text-color);
+            top: 8px;
+            left: 8px;
+            border-radius: 50px;
+            // border: 1px solid var(--theme-text-color);
         }
-        button{
-            width: 100%;
-            height: 100%;
-            &:hover {
-                background-color: var(--colors-gray2);
-            }
-        }
-        &:first-of-type{
-            border-right: 1px solid var(--secondary-color);
-        }
-    }
-
-    li:first-of-type{
-        border-right: 1px solid var(--secondary-color);
     }
 }
 
-li.banner-size-item {
-    button.banner-size-button {
-        display: flex;
-        align-items: center;
-        gap: var(--space-rg);
-        padding: 0.2rem;
-        &.--selected {
-            color: var(--secondary-color);
-            span.box {
-                border: 1px solid var(--secondary-color);
-                &::before {
-                    content: url("../icons/checker.svg");
-                    display: block;
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -55%);
-                }
+button.btn-mode {
+    width: 100%;
+    height: 25px;
+    transform: translate(-0.2rem, -0.2rem);
+    box-shadow: 3px 3px var(--colors-gray3);
+    border: 1px solid var(--theme-text-color);
+    &:hover {
+        background-color: var(--color-blue-01);
+    }
+}
+
+button.banner-size-button {
+    display: flex;
+    align-items: center;
+    gap: var(--space-rg);
+    padding: 0.2rem;
+    text-transform: none;
+
+    &.--selected {
+        color: var(--theme-text-color);
+        span.box {
+            border: 1px solid var(--theme-text-color);
+            &::before {
+                content: url("../icons/checker.svg");
+                display: block;
+                position: absolute;
+                top: 55%;
+                left: 50%;
+                transform: translate(-50%, -55%);
             }
         }
+    }
 
-        span.box {
-            width: 1.4rem;
-            height: 1.4rem;
-            aspect-ratio: 1/1;
-            border: 1px solid var(--secondary-color);
-            cursor: pointer;
-            margin-right: var(--spacing-rg);
-            position: relative;
-        }
+    span.box {
+        width: 1.4rem;
+        height: 1.4rem;
+        aspect-ratio: 1/1;
+        cursor: pointer;
+        margin-right: var(--space-02);
+        border: 1px solid var(--theme-text-color);
+        position: relative;
     }
 }
 
 #banner-preview-board {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-md);
+    gap: var(--space-03);
     z-index: 0;
-    padding: var(--spacing-md);
+    padding: var(--space-03);
+    background-color: var(--colors-gray1);
     @extend %hide-scrollbar;
 
     .banner .banner__footer {
-        padding: var(--spacing-rg) 0;
+        padding: var(--space-02);
+        border: 1px solid var(--theme-text-color);
+        border-top: none;
     }
 
     .banner__wrapper {
@@ -209,13 +135,4 @@ li.banner-size-item {
 
 #information ul li {
     pointer-events: none !important;
-}
-
-button#clear-button{
-    height: 3rem;
-    border: 1px solid var(--secondary-color);
-    font-weight: 700;
-    &:hover {
-        background-color: var(--colors-gray2);
-    }
 }

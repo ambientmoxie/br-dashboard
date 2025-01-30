@@ -31,51 +31,22 @@ $error = isset($_GET['error']) && $_GET['error'] === 'invalid' ? true : false;
 
 <body id="login">
 
+    <header id="header-login">
+        login
+    </header>
     <main>
-        <header>
-            <span>login</span>
-        </header>
 
         <form action="/api/check-password.php" method="POST">
-            <label for="password">enter your password to proceed</label>
-            <div>
-                <input type="password" name="password" id="password" placeholder="Password*" required>
-                <button type="submit" id="submit">submit</button>
+            <label for="password">Enter your password to proceed:</label>
+            <input type="password" name="password" id="password" placeholder="Password*" required>
+            <div id="form-footer">
+                <a id="forget-password-link" href="">Forgot your password ?</a>
+                <button type="submit" id="submit" class="btn-common">Submit</button>
             </div>
-            <?php if ($error): ?>
-                <p style="color: red;">Invalid password. Please try again.</p>
-            <?php endif; ?>
         </form>
-
-        <div id="studio-info">
-            <p>placeholder.studio<br />
-                19 Rue Charles,<br />
-                75011 London <br />
-                © <span id="current-year"></span></p>
-
-            <div id="current-time"></div>
-        </div>
-
-        <footer>
-            <div id="pm-contact">
-                <ul class="pm-info">
-                    <li class="pm-name">james whitmore</li>
-                    <li class="pm-title">senior project manager</li>
-                    <li class="pm-email"><a href="mailto:james.whitemore@placeholder.studio">james.whitmore@placeholder.studio</a></li>
-                </ul>
-
-                <ul class="pm-info">
-                    <li class="pm-name">emma harrington</li>
-                    <li class="pm-title">social media project manager</li>
-                    <li class="pm-email"><a href="mailto:emma.harrington@placeholder.studio">emma.harrington@placeholder.studio</a></li>
-                </ul>
-            </div>
-
-            <div id="credential">
-                <p>Graphic design and development by <a href="mailto:contact@maximebenoit.work">Maxime Benoit</a> <br />
-                    Made with taste by <a href="https://placeholder.studio/"></a>placeholder.studio</p>
-            </div>
-        </footer>
+        <?php if ($error): ?>
+            <p id="alert-password">Invalid password. Please try again.</p>
+        <?php endif; ?>
 
     </main>
 

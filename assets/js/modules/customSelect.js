@@ -24,6 +24,8 @@ class CustomSelect {
         const header = this.customSelect.firstElementChild;
         const dropdown = this.customSelect.lastElementChild;
 
+        this.headerArrow = header.querySelector(".header-arrow");
+
         header.addEventListener("click", (event) => {
             event.stopPropagation();
             this.toggleDropdown(dropdown);
@@ -32,7 +34,7 @@ class CustomSelect {
         dropdown.addEventListener("click", (e) => {
             if (e.target.classList.contains("custom-select__option")) {
                 const option = e.target;
-                this.editSelectedOption(e.target, header);       
+                this.editSelectedOption(option);       
                 this.closeDropdown(CustomSelect.currentOpenDropdown);
                 if (this.onSelect) this.onSelect(dropdown, option);                  
             }
@@ -57,9 +59,21 @@ class CustomSelect {
     }
 
     createHeader() {
-        const header = document.createElement("div");
-        header.classList.add("custom-select__header", "custom-select__option");
+        const header = document.createElement("button");
+        header.classList.add("custom-select__header", "custom-select__option", "btn-common");
         header.innerText = this.selectedOption.innerText;
+
+        const headerArrow = document.createElement("span");
+        headerArrow.classList.add("header-arrow");
+        headerArrow.innerHTML = `
+        <?xml version="1.0" encoding="UTF-8"?>
+        <svg version="1.1" viewBox="0 0 10.1 5.1" xmlns="http://www.w3.org/2000/svg">
+        <defs><style>.cls-1 { fill: #35202e; }</style></defs>
+        <polygon class="cls-1" points="10.1 0 0 0 5.1 5.1"/>
+        </svg>
+        `
+        header.append(headerArrow);
+
         return header;
     }
 
@@ -75,8 +89,8 @@ class CustomSelect {
     }
 
     createOption(defaultOption, index) {
-        const option = document.createElement("div");
-        option.classList.add("custom-select__option");
+        const option = document.createElement("button");
+        option.classList.add("custom-select__option", "btn-common");
         option.innerText = defaultOption.innerText;
         option.dataset.index = index; // Remove ?
         option.setAttribute("data-key", defaultOption.getAttribute("data-key"));
@@ -108,29 +122,38 @@ class CustomSelect {
     // Close targeted dropdown, reset class and reasign currentOpenDropdown.
     closeDropdown(dropdown) {
         dropdown.style.display = "none";
-        dropdown.parentElement.classList.remove("is-open");
-        CustomSelect.currentOpenDropdown = null;
+        const parent = dropdown.parentElement;
+        parent.classList.remove("is-open");
 
-        // Remove the event listener to the body
+        const headerArrow = parent.querySelector(".header-arrow");
+        if (headerArrow) {
+            headerArrow.style.transform = "rotate(0)";
+        }
+
+        CustomSelect.currentOpenDropdown = null;
         document.removeEventListener("click", this.boundOutsideClickHandler);
     }
 
     // Open targeted dropdown, reset class and reasign currentOpenDropdown.
     openDropdown(dropdown){
         dropdown.style.display = "block";
-        dropdown.closest(".custom-select").classList.add("is-open");
-        CustomSelect.currentOpenDropdown = dropdown;
+        const parent = dropdown.closest(".custom-select");
+        parent.classList.add("is-open");
 
-        // Add event listener to the body and bind the click to the current object.
+        const headerArrow = parent.querySelector(".header-arrow");
+        if (headerArrow) {
+            headerArrow.style.transform = "rotate(180deg)";
+        }
+
+        CustomSelect.currentOpenDropdown = dropdown;
         this.boundOutsideClickHandler = this.handleOutsideClick.bind(this);
         document.addEventListener("click", this.boundOutsideClickHandler);
     }
 
-    editSelectedOption(newSelectedOption, header) {
+    editSelectedOption(newSelectedOption) {
         if (this.currentSelectedOption)
             this.currentSelectedOption.classList.remove("prevent-selection");
         newSelectedOption.classList.add("prevent-selection"); 
-        header.innerText = newSelectedOption.innerText;       
         this.currentSelectedOption = newSelectedOption;
     }
 }

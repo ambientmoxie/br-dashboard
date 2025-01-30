@@ -20,6 +20,8 @@ class ModeManager {
         this.modeOptions = viewModeSwitch.querySelectorAll("li");
         this.buttons = bannerSizeList.querySelectorAll("li button");
         this.banners = bannerPreviewBoard.querySelectorAll(".banner");
+
+        this.handleClearSelection = this.clearSelection.bind(this); // For reference
         this.clearButton = clearButton;
 
         // Defining default mode
@@ -40,10 +42,7 @@ class ModeManager {
         });
 
         // Clear the board
-        this.clearButton.addEventListener(
-            "click",
-            this.clearSelection.bind(this)
-        );
+        this.clearButton.addEventListener("click", this.handleClearSelection);
 
         this.buttons.forEach((button) => {
             button.addEventListener("click", this.handleButtonClick.bind(this));
@@ -78,14 +77,24 @@ class ModeManager {
 
     clearSelection(e) {
 
-        const isCleared = e.target.classList.contains("--cleared");
-        e.target.classList.toggle("--cleared");
-        const action = isCleared ? "add" : "remove";
-        const buttonText = isCleared ? "clear all" : "display all";
+        const clearButton = e.target;
+
+        this.isCleared = !this.isCleared; // Toggle state
+        clearButton.classList.toggle("--cleared", this.isCleared);
+
+        const action = this.isCleared ? "remove" : "add";
+        const buttonText = this.isCleared ? "display all" : "clear all";
 
         this.buttons.forEach((button) => button.classList[action]("--selected"));
-        e.target.innerText = buttonText;
+        clearButton.innerText = buttonText;
 
+        // Remove event listener temporarily
+        this.clearButton.removeEventListener("click", this.handleClearSelection);
+
+        // Re-add event listener after a slight delay to allow UI updates
+        setTimeout(() => {
+            this.clearButton.addEventListener("click", this.handleClearSelection);
+        }, 0);
         this.updateBoard();
     }
 
