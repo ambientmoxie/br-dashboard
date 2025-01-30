@@ -1,7 +1,7 @@
 @use "utilities" as *;
 
 :root {
-    /* Shades of gray */
+    /* Colors */
     --colors-gray0: #fff;
     --colors-gray1: #f7f7f7;
     --colors-gray2: #ededed;
@@ -11,9 +11,12 @@
     --colors-gray6: #333;
     --colors-gray7: #000;
 
-    --color-blue-01: #eaecef;
-    --color-blue-02: #d4d9df;
-    --color-blue-03: #222529;
+    --colors-blue-01: #eaecef;
+    --colors-blue-02: #d4d9df;
+    --colors-blue-03: #222529;
+
+    --colors-accent: #35202e;
+    --colors-alert: #E15100;
 
     /* Spacing */
 
@@ -27,12 +30,6 @@
     --space-08: 15rem;
     --space-09: 20rem;
 
-    --spacing-xl: 6rem;
-    --spacing-lg: 3rem;
-    --spacing-md: 2rem;
-    --spacing-rg: 1rem;
-    --spacing-sm: 0.5rem;
-
     /* Typography */
     --font-size-lg: 2rem;
     --font-size-md: 1.6rem;
@@ -41,28 +38,21 @@
     --font-family-primary: Arial, Helvetica, sans-serif;
 
     --letter-spacing-rg: 0.05rem;
-
     --theme-transition-duration: 0.15s;
 
-    --colors-alert: #E15100;
-
-    /* Base colors */
-
+    /* Base */
     --theme-background: var(--colors-gray0);
-    // --theme-text-color: var(--colors-gray7); //Text color
-    --theme-text-color: #35202e; //Text color
-    --tertiary-color: var(--color-accent0); // Hightlight
+    --theme-text-color: var(--colors-accent);
 }
 
-.dark-theme {
-    --primary-color: #0d0d0d; // Background color. Most visible color
-    --secondary-color: var(--colors-gray2); //Text color
-}
+// .dark-theme {
+//     --primary-color: #0d0d0d; // Background color. Most visible color
+//     --secondary-color: var(--colors-gray2); //Text color
+// }
 
 html {
     box-sizing: border-box;
     font-size: 62.5%;
-    @extend %hide-scrollbar;
 }
 
 *,
@@ -131,15 +121,14 @@ button#btn-logout {
 
 button.btn-common {
     @include style-button();
-    background-color: var(--color-blue-01);
+    background-color: var(--colors-blue-01);
     transition: background-color var(--theme-transition-duration) ease;
     &:hover {
-        background-color: var(--color-blue-02);
+        background-color: var(--colors-blue-02);
     }
 }
 
 // Form
-
 form {
     width: 100%;
     max-width: 40rem;
@@ -154,7 +143,7 @@ form {
         width: 100%;
         @extend %reset-input;
         @include style-button();
-        border: 1px solid var(--color-blue-02);
+        border: 1px solid var(--colors-blue-02);
         &::placeholder {
             color: var(--theme-text-color);
         }

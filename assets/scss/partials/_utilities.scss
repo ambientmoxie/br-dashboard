@@ -69,11 +69,12 @@
     height: 3.5rem;
     align-items: center;
     justify-content: center;
-    padding: 0 var(--spacing-rg);
+    padding: 0 var(--space-02);
 }
 
 @mixin hover-animation {
-    transition: all var(--theme-transition-duration) ease;
+    transition: transform var(--theme-transition-duration) ease, 
+            box-shadow var(--theme-transition-duration) ease;
     &:hover {
         transform: translate(-0.2rem, -0.2rem);
         box-shadow: 3px 3px var(--colors-gray3);
