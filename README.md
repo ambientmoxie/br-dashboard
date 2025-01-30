@@ -44,7 +44,7 @@ The banners are stored in a structured `production` directory, and the tool pars
     │   │       │   └── index.html
     │   │       └── etc.
     │   ├── variation-2/
-    │   │   ├── version-2/
+    │   │   ├── version-1/
     │   │   │   ├── language-1/
     │   │   │   │   └── index.html
     │   │   │   ├── language-2/
