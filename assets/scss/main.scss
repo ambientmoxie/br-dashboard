@@ -9,6 +9,6 @@
 @use "partials/admin" as *;
 @use "partials/dashboard" as *;
 
-// // Components
-    @use "partials/select" as *;
+// Components
+@use "partials/custom-select" as *;
 

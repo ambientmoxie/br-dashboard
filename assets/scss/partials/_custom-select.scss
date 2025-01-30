@@ -1,9 +1,9 @@
 #selectors{
   display: grid;
-  gap: var(--spacing-rg);
+  gap: var(--space-02);
   .selector-wrapper{
     display: grid;
-    gap: var(--spacing-sm);
+    gap: var(--space-01);
   }
 } 
 
@@ -24,25 +24,25 @@
 
     .custom-select__option {
         width: 100%;        
-        padding: 0 var(--spacing-rg);
-        cursor: pointer;
         display: flex;
+        cursor: pointer;
         align-items: center;
+        padding: 0 var(--space-02);
         background-color: var(--colors-gray0);
         &:hover {
-            background-color: var(--color-blue-01);
+            background-color: var(--colors-blue-01);
         }
     }
 
     .custom-select__dropdown {
-        display: none;
-        border: 1px solid var(--theme-text-color); 
+        top: 40px;
         z-index: 10;
+        display: none;
+        overflow: hidden;
         border-radius: 5px;
         position: absolute;
-        background-color: white;
-        top: 40px;
-        overflow: hidden;
+        background-color: var(--theme-background);
+        border: 1px solid var(--theme-text-color); 
         & > button {
           background-color: var(--theme-background);
           justify-content: flex-start;
@@ -54,15 +54,13 @@
     }
 }
 
-// Open position specificities
-
 .custom-select__dropdown {
     width: 100%;
     left: 0;
     display: block;
 
     button.prevent-selection {
-        background-color: var(--color-blue-01);
+        background-color: var(--colors-blue-01);
         pointer-events: none;
     }
 }

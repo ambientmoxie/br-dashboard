@@ -17,27 +17,27 @@ body#dashboard header {
 div#sidebar {
     top: 0;
     display: flex;
-    flex-direction: column;
     height: 100svh;
     max-width: 28rem;
     position: sticky;
     overflow-y: auto;
     gap: var(--space-06);
     padding: var(--space-03);
-    border-right: 1px solid var(--theme-text-color);
+    flex-direction: column;
 }
 
 #banner-filter {
     div:last-of-type {
         display: grid;
-        gap: var(--spacing-rg);
-        padding: var(--spacing-sm) 0;
+        gap: var(--space-02);
+        padding: var(--space-01) 0;
     }
 }
 
 #view-mode-switch {
     display: flex;
     gap: var(--space-01);
+
     li.option {
         flex: 1;
         &.--selected button::before {
@@ -45,11 +45,10 @@ div#sidebar {
             position: absolute;
             width: 7px;
             height: 7px;
-            background-color: var(--theme-text-color);
             top: 8px;
             left: 8px;
             border-radius: 50px;
-            // border: 1px solid var(--theme-text-color);
+            background-color: var(--theme-text-color);
         }
     }
 }
@@ -61,15 +60,15 @@ button.btn-mode {
     box-shadow: 3px 3px var(--colors-gray3);
     border: 1px solid var(--theme-text-color);
     &:hover {
-        background-color: var(--color-blue-01);
+        background-color: var(--colors-blue-01);
     }
 }
 
 button.banner-size-button {
     display: flex;
+    padding: 0.2rem;
     align-items: center;
     gap: var(--space-rg);
-    padding: 0.2rem;
     text-transform: none;
 
     &.--selected {
@@ -99,13 +98,12 @@ button.banner-size-button {
 }
 
 #banner-preview-board {
+    z-index: 0;
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-03);
-    z-index: 0;
     padding: var(--space-03);
     background-color: var(--colors-gray1);
-    @extend %hide-scrollbar;
 
     .banner .banner__footer {
         padding: var(--space-02);
@@ -117,11 +115,11 @@ button.banner-size-button {
         position: relative;
         &::before {
             content: "";
-            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            position: absolute;
             border: 1px solid var(--colors-gray7);
             z-index: 1;
         }
