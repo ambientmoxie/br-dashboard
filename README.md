@@ -74,7 +74,7 @@ The banners are stored in a structured `production` directory, and the tool pars
 - **assets/js/**: Includes javascript modules like:
   - `ui-manager.js`: Handles UI updates based on user interactions.
   - `mode-manager.js`: Manages single-banner and multi-banner view modes.
-  - `selectable-handler.js`: Triggers UI updates for banner selection.
+  - `custom-select.js`: Create custom HTML select elements.
 - **.env**: Stores environment variables:
   - `VITE_DEV_SERVER_IP`: Used for development with Vite's HMR.
   - `VITE_DEV`: Automatically updated by set-env.js.

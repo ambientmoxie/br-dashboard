@@ -1,6 +1,6 @@
 import "../scss/main.scss";
 import { initModeManager } from "./modules/mode-manager";
-import initCustomSelect from "./modules/customSelect";
+import initCustomSelect from "./modules/custom-select";
 import clearSession from "./modules/logout";
 
 document.addEventListener("DOMContentLoaded", () => {
