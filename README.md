@@ -1,6 +1,6 @@
 # Banner Review Dashboard
 
-![banner](https://github.com/user-attachments/assets/ba64df21-fe2c-43b3-8cb6-694cdd200d17)
+![banner](https://github.com/user-attachments/assets/fd57b090-8e16-41bf-93d0-c33297bcedc1)
 
 ## Introduction
 
