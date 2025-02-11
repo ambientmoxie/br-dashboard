@@ -1,0 +1,22 @@
+# Vite generated folder
+# ----------------------
+
+/assets/bundle
+/assets/fonts
+
+# Modules folder
+# ----------------------
+
+node_modules
+vendor
+
+# Miscellaneous
+# ----------------------
+
+*.zip
+*.rar
+*.psd
+*.indd
+*.ai
+.env
+.DS_Store

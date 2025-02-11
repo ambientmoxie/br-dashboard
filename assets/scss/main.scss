@@ -1,0 +1,10 @@
+// General
+@use "../../node_modules/normalize.css/" as *;
+@use "partials/fonts" as *;
+@use "partials/global" as *;
+
+// Pages
+@use "partials/login" as *;
+@use "partials/admin" as *;
+@use "partials/dashboard" as *;
+

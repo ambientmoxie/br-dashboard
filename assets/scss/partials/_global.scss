@@ -1,0 +1,141 @@
+@use "utilities" as *;
+
+:root {
+    // Colors
+    // ------------------------------
+    --color-light: #fff;
+    --color-dark: #000;
+    --color-gray-01: #b3b3b3;
+    --color-gray-02: #808080;
+    --color-accent: #e15100;
+
+    // Spacing
+    // ------------------------------
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-rg: 2rem;
+    --space-md: 4rem;
+    --space-lg: 10rem;
+
+    // Typography
+    // ------------------------------
+    --font-primary: "SempioneGrotesk", Helvetica, Arial, sans-serif;
+    --font-size-lg: 2.5rem;
+    --font-size-rg: 1.4rem;
+    --font-size-sm: 1.2rem;
+
+    --transition-duration: 0s;
+    --transition-easing: ease;
+
+    // Theme
+    // ------------------------------
+    --color-background: var(--color-light);
+    --color-text: var(--color-dark);
+    --color-icon: var(--color-text);
+    --border-color: var(--color-text);
+    --color-placeholder: var(--color-gray-01);
+    --color-link: var(--text-color);
+    --alert: var(--color-accent);
+    --color-table-title: var(--color-gray-01);
+
+}
+
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-weight: 500;
+    color: var(--color-text);
+    font-size: var(--font-size-rg);
+    font-family: var(--font-primary);
+    background-color: var(--color-background);
+}
+
+// Misc
+// ----------------------------------------
+ul {
+    list-style-type: none;
+}
+
+img,
+svg,
+iframe {
+    display: block;
+}
+
+a {
+    @extend %reset-links;
+    color: var(--color-link);
+}
+
+
+p {
+    text-transform: none;
+    font-size: 1.4rem;
+}
+
+// Buttons
+// ----------------------------------------
+button {
+    @extend %reset-button;
+    text-align: left;
+}
+
+button.button-default {
+    cursor: pointer;
+    display: flex;
+}
+
+button#submit,
+button#logout,
+button#toggle {
+    text-transform: uppercase;
+    @include button-transition;
+}
+
+// Header
+// ----------------------------------------
+header {
+    position: sticky;
+    top: 0;
+    padding: var(--space-sm) var(--space-sm) 0;
+    div#page-label {
+        font-size: var(--font-size-lg);
+        text-transform: uppercase;
+        line-height: 0.9;
+    }
+    z-index: 1000;
+}
+
+body#login header,
+body#admin header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+// Footer
+// ----------------------------------------
+.fixed-footer {
+    position: fixed;
+    display: flex;
+    padding: 0 var(--space-sm);
+    bottom: var(--space-sm);
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}

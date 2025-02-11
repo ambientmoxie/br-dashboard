@@ -1,0 +1,30 @@
+@use "utilities" as *;
+
+ul#campaigns-list {
+    padding: var(--space-lg) var(--space-sm) var(--space-md);
+}
+
+ul#campaigns-list > li {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    padding: var(--space-xs);
+
+    span:last-of-type {
+        text-align: right;
+    }
+}
+
+li#campaign-head span {
+    font-size: var(--font-size-sm);
+    color: var(--color-table-title);
+    text-transform: uppercase;
+}
+
+li.campaign-data {
+    border-bottom: 1px solid black;
+    span:not(.campaign-quantity, .campaign-access) {
+        font-size: var(--font-size-rg);
+        color: #000;
+        text-transform: uppercase;
+    }
+}

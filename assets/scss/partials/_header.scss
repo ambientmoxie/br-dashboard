@@ -1,0 +1,18 @@
+header {
+    position: sticky;
+    top: 0;
+    padding: var(--space-sm) var(--space-sm) 0;
+    div#page-label {
+        font-size: var(--font-size-lg);
+        text-transform: uppercase;
+        line-height: 0.9;
+    }
+    z-index: 1000;
+}
+
+body#login header,
+body#admin header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}

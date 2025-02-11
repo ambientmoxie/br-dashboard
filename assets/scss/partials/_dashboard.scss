@@ -1,0 +1,70 @@
+@use "utilities" as *;
+
+body#dashboard header {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+
+    > * {
+        flex: 1;
+    }
+
+    #selectors {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+// Gray out buttons if selected or used as collapsible title
+// ---------------------------------------------------------
+div#selectors button:not(.--selected, .collapsible__head) {
+    @include button-transition;
+}
+
+button.collapsible__head {
+    text-transform: uppercase;
+}
+
+div.collapsible {
+    position: relative;
+    div.collapsible__body {
+        position: absolute;
+        top: 2.5rem;
+    }
+}
+
+// Ratios components
+// --------------------------------
+div#ratios div.collapsible__body > *:not(:last-child) {
+    margin-bottom: var(--space-sm);
+}
+
+// Banner preview board
+// --------------------------------
+div#banner-preview-board {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-sm) var(--space-md);
+
+    div.banner__wrapper {
+        position: relative;
+        &::before {
+            content: "";
+            top: 0;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            pointer-events: none;
+            border: 1px solid var(--border-color);
+        }
+    }
+
+    div.banner__footer {
+        padding: var(--space-xs) 0;
+    }
+}
